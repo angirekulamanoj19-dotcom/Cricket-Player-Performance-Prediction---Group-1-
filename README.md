@@ -1,5 +1,3 @@
-# Cricket-Player-Performance-Prediction---Group-1-
-
 ## Cricket Player Performance Prediction (IPL)
 📌 About the Project
 
