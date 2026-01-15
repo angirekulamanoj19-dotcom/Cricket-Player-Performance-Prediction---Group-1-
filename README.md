@@ -4,14 +4,15 @@
 
 ### AI-Powered T20I Player Score Prediction using Advanced Machine Learning
 
-[![Python Version](https://img.shields.io/badge/python-3.9%2B-blue.svg)](https://www.python.org/downloads/)
+[![Python Version](https://img.shields.io/badge/python-3.11-blue.svg)](https://www.python.org/downloads/)
 [![Streamlit](https://img.shields.io/badge/Streamlit-1.29.0-FF4B4B.svg)](https://streamlit.io/)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![Docker](https://img.shields.io/badge/Docker-Ready-2496ED.svg)](https://www.docker.com/)
+[![Live Demo](https://img.shields.io/badge/Live-Demo-success.svg)](https://cricket-score-prediction-system.streamlit.app/)
 
 **Predict cricket player scores with state-of-the-art ML models featuring interactive dashboard**
 
-[Features](#-features) • [Demo](#-live-demo) • [Installation](#-installation) • [Usage](#-usage) • [Deployment](#-deployment) • [Models](#-machine-learning-models)
+[Features](#-features) • [Live Demo](#-live-demo) • [Installation](#-installation) • [Architecture](#-architecture) • [Models](#-machine-learning-models)
 
 ---
 
@@ -58,18 +59,30 @@ A production-ready machine learning system that predicts T20 International crick
 
 ## 🚀 Live Demo
 
-### Launch the Dashboard
+**🌐 Access the live application:** [https://cricket-score-prediction-system.streamlit.app/](https://cricket-score-prediction-system.streamlit.app/)
 
-```bash
-streamlit run app.py
-```
+![Dashboard Screenshot](docs/deploydashboard.png)
 
-The dashboard will open at `http://localhost:8501` with:
+### Dashboard Features
+
+The interactive dashboard provides:
 
 - 🔮 **Prediction Interface**: Enter player details and get instant predictions
 - 📊 **Model Performance**: Compare all models with interactive charts
 - 📈 **Data Insights**: Explore historical trends and top performers
 - ℹ️ **About**: Learn about the technology and methodology
+
+![Output Screenshot 1](docs/output.png)
+
+![Output Screenshot 2](docs/output1.png)
+
+### Local Launch
+
+```bash
+streamlit run app.py
+```
+
+The dashboard will open at `http://localhost:8501` with full functionality.
 
 ### Quick Prediction Example
 
@@ -85,7 +98,7 @@ The dashboard will open at `http://localhost:8501` with:
 
 ### Prerequisites
 
-- Python 3.9 or higher
+- Python 3.11 (recommended for deployment compatibility)
 - pip package manager
 - Docker (optional, for containerized deployment)
 
@@ -93,26 +106,26 @@ The dashboard will open at `http://localhost:8501` with:
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/cricket-score-prediction.git
-cd cricket-score-prediction
+git clone https://github.com/deekshithgowda85/Cricket-Score-Prediction-System.git
+cd Cricket-Score-Prediction-System
 
 # Create virtual environment (recommended)
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+python -m venv .venv
+
+# Activate virtual environment
+# On Windows:
+.venv\Scripts\activate
+# On macOS/Linux:
+source .venv/bin/activate
 
 # Install dependencies
 pip install -r requirements.txt
-
-# Generate feature datasets (IMPORTANT - Run this first!)
-python setup_features.py
 
 # Launch the dashboard
 streamlit run app.py
 
 # Open browser to http://localhost:8501
 ```
-
-**Note:** The `setup_features.py` script generates required feature datasets from raw CSV files. This step is essential before running the dashboard.
 
 ### Docker Setup
 
@@ -129,27 +142,29 @@ docker-compose up
 
 ### Dependencies
 
-```
-# Core ML & Data Science
-pandas==2.1.4
-numpy==1.26.2
-scikit-learn==1.3.2
-xgboost==2.0.3
-lightgbm==4.1.0
+```txt
+# Core Data Science (optimized for fast deployment)
+pandas>=2.0.0,<2.3.0
+numpy>=1.24.0,<2.0.0
+scikit-learn>=1.3.0,<1.5.0
+
+# Machine Learning Models
+xgboost>=2.0.0,<2.1.0
+lightgbm>=4.0.0,<5.0.0
 
 # Visualization
-matplotlib==3.8.2
-seaborn==0.13.0
-plotly==5.18.0
+plotly>=5.18.0,<6.0.0
 
 # Dashboard
-streamlit==1.29.0
+streamlit>=1.29.0,<2.0.0
 
-# Model Tools
-optuna==3.5.0
-shap==0.44.0
-joblib==1.3.2
+# Utilities
+joblib>=1.3.0,<2.0.0
+python-dateutil>=2.8.0
+pytz>=2023.3
 ```
+
+**Note**: Version ranges are used instead of exact pins for faster wheel installation on Streamlit Cloud.
 
 ## 💻 Usage
 
@@ -219,22 +234,33 @@ predicted_score = response.json()['prediction']
 
 ## 🚀 Deployment
 
-### Streamlit Cloud (Easiest)
+### Streamlit Cloud (Recommended - Already Live!)
 
-1. **Push to GitHub**
+**🌐 Live Demo**: [https://cricket-score-prediction-system.streamlit.app/](https://cricket-score-prediction-system.streamlit.app/)
 
-   ```bash
-   git add .
-   git commit -m "Add Streamlit dashboard"
-   git push origin main
-   ```
+#### Deploy Your Own Instance
+
+1. **Fork the Repository on GitHub**
 
 2. **Deploy on Streamlit Cloud**
    - Go to [share.streamlit.io](https://share.streamlit.io)
+   - Click "New app"
    - Connect your GitHub repository
    - Select `app.py` as the main file
+   - Advanced settings:
+     - Python version: `3.11` (uses `.python-version` and `runtime.txt`)
+     - Requirements file: `requirements.txt`
    - Click "Deploy"
-   - Your app will be live in minutes! 🎉
+   - Your app will be live in 3-5 minutes! 🎉
+
+#### Deployment Optimizations Applied
+
+✅ **Python 3.11** - Specified via `.python-version` and `runtime.txt` for pre-built wheels  
+✅ **Flexible dependencies** - Version ranges instead of exact pins  
+✅ **Optimized model size** - XGBoost (0.45 MB) and LightGBM (0.24 MB) deployed  
+✅ **Fast startup** - ~3-5 minute deployment time
+
+**Build Time**: 3-5 minutes (optimized from 8-12 minutes)
 
 ### Docker Deployment
 
@@ -412,32 +438,215 @@ The project uses **SHAP (SHapley Additive exPlanations)** for:
 ## 📁 Project Structure
 
 ```
-cricket-score-prediction/
-├── app.py                          # 🎯 Streamlit dashboard (MAIN APP)
-├── requirements.txt                # 📦 Python dependencies
-├── Dockerfile                      # 🐳 Docker configuration
-├── docker-compose.yml              # 🐳 Docker Compose setup
-├── README.md                       # 📖 Documentation
-├── .streamlit/
-│   └── config.toml                # ⚙️ Streamlit configuration
-├── dataset/
-│   ├── t20i_Matches_Data.csv      # 🏏 Match data
-│   ├── t20i_Batting_Card.csv      # 📊 Batting statistics
-│   ├── t20i_Bowling_Card.csv      # ⚾ Bowling statistics
-│   ├── players_info.csv           # 👤 Player information
-│   ├── batting_features_dataset.csv # 🔧 Engineered features
-│   └── bowling_features_dataset.csv # 🔧 Bowling features
-├── models/
-│   ├── xgb_model.joblib           # 🏆 Best XGBoost model
-│   ├── lgb_model.joblib           # 💚 LightGBM model
-│   ├── rf_model.joblib            # 🌲 Random Forest model
-│   ├── feature_pipeline.pkl       # 🔧 Feature preprocessing
-│   ├── model_results.csv          # 📊 Performance metrics
-│   └── shap_values.npy            # 🔍 SHAP analysis
-└── notebooks/
-    ├── 01_EDA.ipynb               # 📈 Exploratory analysis
-    ├── 02_FeatureEngineering.ipynb # 🔧 Feature creation
-    └── 03_ModelTraining.ipynb     # 🤖 Model training
+cricket-score-prediction-system/
+│
+├── 📄 app.py                           # 🎯 Main Streamlit Dashboard Application
+├── 📄 data_cleaning.py                 # 🧹 Data preprocessing and cleaning utilities
+├── 📄 requirements.txt                 # 📦 Python dependencies (optimized for deployment)
+├── 📄 .python-version                  # 🐍 Python version specification (3.11)
+├── 📄 runtime.txt                      # ⚙️ Runtime configuration for deployment
+├── 📄 Dockerfile                       # 🐳 Docker containerization config
+├── 📄 docker-compose.yml               # 🐳 Docker Compose orchestration
+├── 📄 README.md                        # 📖 Project documentation
+├── 📄 .gitignore                       # 🚫 Git ignore rules
+│
+├── 📂 .streamlit/
+│   └── config.toml                     # ⚙️ Streamlit app configuration & theming
+│
+├── 📂 dataset/                         # 🏏 Cricket data files
+│   ├── t20i_Matches_Data.csv           # 📊 Match-level information (2,594 matches)
+│   ├── t20i_Batting_Card.csv           # 🏏 Batting statistics per match
+│   ├── t20i_Bowling_Card.csv           # ⚾ Bowling statistics per match
+│   ├── t20i_Fow_Card.csv               # 📉 Fall of wickets data
+│   ├── t20i_Partnership_Card.csv       # 🤝 Partnership information
+│   ├── players_info.csv                # 👤 Player biographical data (6,703 players)
+│   ├── batting_features_dataset.csv    # 🔧 Engineered batting features (15,847 records)
+│   └── bowling_features_dataset.csv    # 🔧 Engineered bowling features (12,234 records)
+│
+├── 📂 models/                          # 🤖 Trained ML models & artifacts
+│   ├── xgb_model.joblib                # 🏆 XGBoost model (Best - 0.45 MB)
+│   ├── lgb_model.joblib                # 💚 LightGBM model (0.24 MB)
+│   ├── rf_model.joblib                 # 🌲 Random Forest model (27 MB)
+│   ├── cricket_score_model.pkl         # 📦 Legacy model file
+│   ├── feature_pipeline.pkl            # 🔧 Feature preprocessing pipeline
+│   ├── model_results.csv               # 📊 Model performance comparison
+│   └── shap_values.npy                 # 🔍 SHAP values for interpretability
+│
+├── 📂 notebooks/                       # 📓 Jupyter notebooks for analysis
+│   ├── 01_EDA.ipynb                    # 📈 Exploratory Data Analysis
+│   ├── 02_FeatureEngineering.ipynb     # 🔧 Feature creation & engineering
+│   ├── 03_ModelTraining.ipynb          # 🤖 Model training & optimization
+│   └── score_predictor.ipynb           # 🎯 Main prediction notebook
+│
+├── 📂 scripts/                         # 🛠️ Utility scripts
+│   ├── config.py                       # ⚙️ Configuration settings
+│   ├── setup_features.py               # 🔧 Feature dataset generation
+│   └── utils.py                        # 🔨 Helper functions
+│
+└── 📂 docs/                            # 📸 Documentation & screenshots
+    ├── deploydashboard.png             # 🖼️ Dashboard deployment screenshot
+    ├── output.png                      # 🖼️ Output visualization 1
+    └── output1.png                     # 🖼️ Output visualization 2
+```
+
+### Directory Details
+
+#### Core Application Files
+- **app.py**: Main Streamlit application with prediction interface, model comparison, and data insights
+- **data_cleaning.py**: Data preprocessing utilities for handling raw cricket data
+- **requirements.txt**: Optimized dependency list for fast Streamlit Cloud deployment
+
+#### Dataset Organization
+- Raw cricket data from T20I matches (2005-2024)
+- Engineered features including rolling averages, strike rates, and form indicators
+- Player information and match context data
+
+#### Models Directory
+- Three trained ML models (XGBoost, LightGBM, Random Forest)
+- Feature preprocessing pipeline for consistent transformations
+- Performance metrics and SHAP analysis for model interpretability
+
+#### Notebooks
+- Complete ML workflow from EDA to deployment
+- Feature engineering experiments and validation
+- Model training with hyperparameter optimization
+
+#### Scripts
+- Automated feature generation from raw data
+- Configuration management
+- Utility functions for data processing
+
+## 🏗️ Architecture
+
+### System Architecture
+
+```mermaid
+graph TB
+    subgraph "Data Layer"
+        A[Raw T20I Data] --> B[Data Cleaning]
+        B --> C[Feature Engineering]
+        C --> D[Processed Datasets]
+    end
+    
+    subgraph "Model Layer"
+        D --> E[Model Training]
+        E --> F[XGBoost]
+        E --> G[LightGBM]
+        E --> H[Random Forest]
+        F --> I[Model Evaluation]
+        G --> I
+        H --> I
+        I --> J[Best Model Selection]
+    end
+    
+    subgraph "Application Layer"
+        J --> K[Streamlit Dashboard]
+        K --> L[Prediction Interface]
+        K --> M[Model Comparison]
+        K --> N[Data Insights]
+    end
+    
+    subgraph "Deployment"
+        K --> O[Docker Container]
+        K --> P[Streamlit Cloud]
+        O --> Q[Cloud Platforms]
+    end
+    
+    style F fill:#1f77b4
+    style G fill:#2ca02c
+    style H fill:#d62728
+    style K fill:#ff4b4b
+    style P fill:#ffa500
+```
+
+### Data Flow Pipeline
+
+```mermaid
+graph LR
+    A[📊 Raw CSV Files] --> B[🧹 Data Cleaning]
+    B --> C[🔧 Feature Engineering]
+    C --> D[📈 Rolling Averages<br/>Strike Rates<br/>Form Indicators]
+    D --> E[🎯 ML Models]
+    E --> F[🏆 XGBoost Best]
+    E --> G[💚 LightGBM]
+    E --> H[🌲 Random Forest]
+    F --> I[🔮 Predictions]
+    G --> I
+    H --> I
+    I --> J[📱 Dashboard UI]
+    
+    style A fill:#e1f5ff
+    style E fill:#fff3e0
+    style I fill:#f3e5f5
+    style J fill:#e8f5e9
+```
+
+### Model Training Workflow
+
+```mermaid
+graph TD
+    A[Load Cricket Datasets] --> B[Data Preprocessing]
+    B --> C[Feature Engineering]
+    C --> D[Train/Test Split<br/>80/20]
+    D --> E[Baseline Model<br/>10-Match Avg]
+    E --> F[Random Forest<br/>Default Params]
+    F --> G[XGBoost<br/>Optuna Tuning]
+    G --> H[LightGBM<br/>GridSearch Tuning]
+    H --> I{Model Evaluation<br/>RMSE/MAE/R²}
+    I --> J[SHAP Analysis]
+    J --> K[Save Best Models]
+    K --> L[Deploy to Dashboard]
+    
+    style G fill:#1f77b4,color:#fff
+    style I fill:#ffd700
+    style L fill:#32cd32,color:#fff
+```
+
+### Feature Engineering Process
+
+```mermaid
+graph LR
+    A[Player Stats] --> B[Rolling Metrics]
+    A --> C[Career Stats]
+    A --> D[Match Context]
+    
+    B --> E[Last 3, 5, 10<br/>Matches Avg]
+    C --> F[Total Runs<br/>Career Avg/SR]
+    D --> G[Venue<br/>Opposition<br/>Position]
+    
+    E --> H[Feature Vector<br/>45+ Features]
+    F --> H
+    G --> H
+    
+    H --> I[Standardization]
+    I --> J[Model Input]
+    
+    style A fill:#e3f2fd
+    style H fill:#fff3e0
+    style J fill:#e8f5e9
+```
+
+### Deployment Architecture
+
+```mermaid
+graph TB
+    A[GitHub Repository] --> B{Deployment Target}
+    
+    B --> C[Streamlit Cloud]
+    C --> D[Auto Build]
+    D --> E[Live App URL]
+    
+    B --> F[Docker Container]
+    F --> G[AWS ECS]
+    F --> H[Azure Container Apps]
+    F --> I[Heroku]
+    
+    B --> J[Local Development]
+    J --> K[localhost:8501]
+    
+    style C fill:#ff4b4b,color:#fff
+    style F fill:#2496ed,color:#fff
+    style E fill:#32cd32,color:#fff
 ```
 
 ## 🛠️ Development Workflow
@@ -716,19 +925,24 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 **Deekshith Gowda**
 
-- GitHub: [@deekshithgowda85](https://github.com/deekshithgowda85)
-- Repository: [Cricket-Player-Performance-Prediction---Group-1-](https://github.com/deekshithgowda85/Cricket-Player-Performance-Prediction---Group-1-)
+- 🐙 GitHub: [@deekshithgowda85](https://github.com/deekshithgowda85)
+- 📂 Repository: [Cricket-Score-Prediction-System](https://github.com/deekshithgowda85/Cricket-Score-Prediction-System)
+- 🌐 Live App: [cricket-score-prediction-system.streamlit.app](https://cricket-score-prediction-system.streamlit.app/)
 
 ## 🙏 Acknowledgments
 
-- T20I cricket dataset contributors
-- scikit-learn community
-- Jupyter Notebook team
-- GitHub Copilot for development assistance
+- 📊 **Data Source**: T20I cricket statistics from official records (2005-2024)
+- 🛠️ **Libraries**: scikit-learn, XGBoost, LightGBM, Streamlit, SHAP, Plotly, Pandas, NumPy
+- 🏏 **Community**: Open-source ML and cricket analytics communities
+- 🤖 **AI Assistance**: GitHub Copilot for development support
 
 ## 📧 Contact
 
-For questions or feedback, please open an issue in the repository.
+For questions, feedback, or collaboration opportunities:
+
+- 📧 Open an issue in the [GitHub repository](https://github.com/deekshithgowda85/Cricket-Score-Prediction-System/issues)
+- 💬 Start a discussion in the repository
+- 🌐 Try the [live demo](https://cricket-score-prediction-system.streamlit.app/)
 
 ---
 
