@@ -1,0 +1,3 @@
+# Ignore trained model files
+models/*.pkl
+
