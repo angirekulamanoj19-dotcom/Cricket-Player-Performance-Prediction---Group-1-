@@ -203,3 +203,97 @@ Successfully trained and evaluated regression models for player performance pred
 Demonstrated performance improvements over a baseline rolling-average approach.
 Gained insights into feature importance using SHAP analysis.
 Generated deployable model artifacts for dashboard integration.
+ ## Week 7 & Week 8 – Dashboard Development, Deployment, and Finalization
+
+## Overview
+
+Weeks 7 and 8 focus on transforming the trained machine learning model into an end-to-end usable system by building an interactive Streamlit dashboard, integrating the serialized model and preprocessing pipeline, and finalizing the project for deployment and presentation. This phase bridges model development with real-world usability, enabling users to explore player analytics and generate match-level performance predictions.
+
+## 1. Streamlit Dashboard Development
+
+Developed an interactive Streamlit application to serve as the project’s front-end interface. The dashboard allows users to:
+Select batter and season for performance exploration
+Visualize historical runs and strike-rate trends
+Compare career average vs match performance
+Input match parameters (balls faced, recent form, venue average, career average)
+Generate predicted runs for upcoming matches
+
+# Key UI components implemented:
+Sidebar filters for player and season selection
+Dynamic tables for match-level data inspection
+Plotly-based visualizations (bar charts, line charts, scatter plots)
+Prediction input forms and output display
+The dashboard provides both analytical insights and predictive functionality in a single interface.
+
+## 2. Model and Pipeline Integration
+
+Integrated the trained XGBoost / Random Forest model (xgb_model.joblib) and preprocessing pipeline (feature_pipeline.pkl) into the Streamlit application.
+Steps included:
+
+Loading serialized artifacts using joblib
+Applying consistent preprocessing during inference
+Passing user inputs through the feature pipeline
+Generating real-time predictions from the trained model
+This ensures prediction consistency between training and deployment environments.
+
+## 3. Analytical Visualization and Explainability
+
+Enhanced the dashboard with analytical components to support interpretability:
+Player form trends over recent matches
+Career average vs current match performance plots
+Feature importance visualization (optional SHAP integration)
+These visual elements help users understand why specific predictions are produced and which features contribute most to performance outcomes.
+
+## 4. Deployment and Testing
+
+Performed local deployment using Streamlit and validated application functionality:
+
+Verified correct loading of dataset and models
+
+Tested multiple player inputs and edge cases
+
+Ensured prediction stability and UI responsiveness
+
+(Optional) Prepared the application for cloud deployment via Streamlit Cloud by organizing repository structure and dependency files.
+
+## 5. Documentation and Repository Finalization
+
+Final project cleanup and documentation included:
+
+Organizing notebooks, scripts, datasets, and model artifacts
+
+Writing comprehensive README.md documentation
+
+Adding setup instructions and project structure
+
+Preparing final submission-ready GitHub repository
+
+## Key deliverables:
+
+streamlit_app.py – Interactive prediction dashboard
+
+dataset.csv – Feature-engineered dataset
+
+xgb_model.joblib – Trained ML model
+
+feature_pipeline.pkl – Preprocessing pipeline
+
+Final README.md
+
+## Files Included
+
+streamlit_app.py – Streamlit dashboard for analytics and prediction
+
+xgb_model.joblib – Serialized trained model
+
+feature_pipeline.pkl – Feature preprocessing pipeline
+
+dataset.csv – Final ML-ready dataset
+
+## Key Outcomes
+
+Successfully deployed an interactive cricket performance prediction dashboard.
+Integrated machine learning models into a real-time inference pipeline.
+Enabled user-driven analytics and predictions through Streamlit.
+Completed full ML lifecycle: data → features → model → deployment.
+Delivered a reproducible, well-documented end-to-end ML project suitable for academic evaluation and portfolio presentation.
