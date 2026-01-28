@@ -8,7 +8,7 @@ The system provides:
 - Data-driven performance predictions
 - Confidence ranges for predictions
 - Explainable AI using SHAP
-- An interactive Streamlit dashboard
+
 
 ---
 
@@ -79,7 +79,11 @@ streamlit run streamlit_app.py
 ## 📁 Project Structure
 ```
 project/
-│
+
+├── 01_EDA.ipynb
+├── 02_featureEngineering.ipynb
+├── 03_ModelTraining.ipynb
+├── data_cleaning.py
 ├── batsman_model_dataset.csv
 ├── bowler_model_dataset.csv
 ├── streamlit_app.py
